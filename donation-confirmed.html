@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signal Strengthened | B.R.I.D.G.E.</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <style>
+    /* ===================== */
+    /* CONFIRMATION PAGE */
+    /* ===================== */
+    :root {
+      --navy: #0a1a2f;
+      --teal: #00ffd0;
+      --sand: #e6d5b8;
+      --magenta: #ff00aa;
+      --gold: #ffcc00; /* New celebratory color */
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--navy);
+      color: var(--sand);
+      font-family: 'Courier New', monospace;
+      overflow-x: hidden;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.8;
+    }
+
+    .confirmation-container {
+      max-width: 600px;
+      margin: 5rem auto;
+      padding: 3rem;
+      background: rgba(10, 26, 47, 0.9);
+      border: 1px solid var(--gold);
+      box-shadow: 0 0 40px rgba(255, 204, 0, 0.4);
+      position: relative;
+      z-index: 10;
+    }
+
+    h1 {
+      color: var(--gold);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+    }
+
+    .emoji-sparkle {
+      font-size: 3rem;
+      animation: pulse 2s infinite;
+      display: block;
+      margin: 1rem 0;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .confirmation-message {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      border-top: 1px dashed var(--teal);
+      border-bottom: 1px dashed var(--teal);
+      padding: 1.5rem 0;
+    }
+
+    .next-steps {
+      text-align: left;
+      margin: 2rem 0;
+      padding: 1rem;
+      border-left: 3px solid var(--magenta);
+    }
+
+    .next-steps h3 {
+      color: var(--teal);
+    }
+
+    .portal-btn {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      padding: 1rem 2rem;
+      font-family: inherit;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    .portal-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 0 20px var(--gold);
+    }
+
+    .signal-meter {
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--navy), var(--gold), var(--magenta));
+      margin-top: 2rem;
+      animation: pulse 3s infinite alternate;
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Confetti -->
+  <div id="confetti-canvas"></div>
+
+  <div class="confirmation-container">
+    <span class="emoji-sparkle">⚡</span>
+    <h1>SIGNAL STRENGTHENED</h1>
+    
+    <div class="confirmation-message">
+      <p><strong>Your contribution has been encrypted into the Network.</strong></p>
+      <p>Receipt and access instructions will arrive via dead-drop within 24 hours.</p>
+    </div>
+
+    <div class="next-steps">
+      <h3>WHAT HAPPENS NOW?</h3>
+      <ul>
+        <li>Your funds are being <strong>directly redistributed</strong> to active Mutual Aid requests</li>
+        <li>The B.R.I.D.G.E. Files team has been <strong>notified of your backchannel support</strong></li>
+        <li>If you selected a tier, <strong>expect our couriers</strong> within 3-5 business days</li>
+      </ul>
+    </div>
+
+    <a href="https://asiakay.github.io/bridge-link-page/" class="portal-btn">RETURN TO PORTAL</a>
+    <a href="https://bridgefiles.substack.com/" class="portal-btn">READ THE LATEST FILES</a>
+
+    <div class="signal-meter"></div>
+  </div>
+
+  <script>
+    // =====================
+    // CONFETTI CELEBRATION
+    // =====================
+    new p5((p) => {
+      let particles = [];
+      const particleCount = 150;
+
+      p.setup = () => {
+        const canvas = p.createCanvas(
+          document.getElementById('confetti-canvas').offsetWidth,
+          document.getElementById('confetti-canvas').offsetHeight
+        );
+        canvas.parent('confetti-canvas');
+        
+        // Create celebratory particles
+        for (let i = 0; i < particleCount; i++) {
+          particles.push({
+            x: p.random(p.width),
+            y: p.random(-100, -10),
+            size: p.random(5, 12),
+            speed: p.random(2, 5),
+            sway: p.random(-0.5, 0.5),
+            color: p.color(
+              p.random(200, 255),
+              p.random(200, 255),
+              p.random(0, 100),
+              180
+            ),
+            shape: p.random(['circle', 'square', 'triangle'])
+          });
+        }
+      };
+
+      p.draw = () => {
+        p.clear();
+        p.background(10, 26, 47, 10);
+        
+        // Update and draw particles
+        particles.forEach(part => {
+          part.y += part.speed;
+          part.x += part.sway;
+          
+          // Reset if off screen
+          if (part.y > p.height + 20) {
+            part.y = p.random(-100, -10);
+            part.x = p.random(p.width);
+          }
+          
+          p.fill(part.color);
+          p.noStroke();
+          
+          if (part.shape === 'circle') {
+            p.ellipse(part.x, part.y, part.size, part.size);
+          } else if (part.shape === 'square') {
+            p.rect(part.x, part.y, part.size, part.size);
+          } else {
+            p.triangle(
+              part.x, part.y - part.size/2,
+              part.x - part.size/2, part.y + part.size/2,
+              part.x + part.size/2, part.y + part.size/2
+            );
+          }
+        });
+      };
+    });
+
+    // =====================
+    // CONSOLE MESSAGE
+    // =====================
+    console.log(
+      `%cCONTRIBUTION CONFIRMED%c\n\n` +
+      `Your signal has been amplified.\n` +
+      `The Network remembers its allies.\n\n` +
+      `Expected impact:\n` +
+      `- ${Math.floor(Math.random() * 3) + 1} mutual aid requests fulfilled\n` +
+      `- ${Math.floor(Math.random() * 5) + 2} Shadow Spells printed\n` +
+      `- 1 power structure decoded`,
+      'color: #ffcc00; font-size: 2rem;',
+      'color: #00ffd0;'
+    );
+  </script>
+</body>
+</html>

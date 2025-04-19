@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direct Sustenance | B.R.I.D.G.E.</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <style>
+    /* ===================== */
+    /* DONATION LANDING PAGE */
+    /* ===================== */
+    :root {
+      --navy: #0a1a2f;
+      --teal: #00ffd0;
+      --sand: #e6d5b8;
+      --magenta: #ff00aa;
+      --blood: #ff0033; /* New urgent accent */
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--navy);
+      color: var(--sand);
+      font-family: 'Courier New', monospace;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    #portal-container {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Particle Background */
+    #donation-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.7;
+    }
+
+    /* Header */
+    .portal-header {
+      padding: 2rem;
+      border-bottom: 1px solid var(--blood); /* Urgent red */
+      position: relative;
+      z-index: 100;
+      text-align: center;
+    }
+
+    .portal-header h1 {
+      margin: 0;
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      text-shadow: 0 0 10px var(--blood);
+      letter-spacing: 1px;
+    }
+
+    .portal-header h2 {
+      color: var(--magenta);
+      margin-top: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    /* Main Content */
+    .donation-content {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: rgba(10, 26, 47, 0.9);
+      border: 1px solid var(--blood);
+      box-shadow: 0 0 30px rgba(255, 0, 51, 0.3);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Impact Statement */
+    .impact-statement {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed var(--blood);
+    }
+
+    .impact-statement em {
+      color: var(--teal);
+      font-style: normal;
+      display: block;
+      margin-top: 1rem;
+    }
+
+    /* Donation Tiers */
+    .tier-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .donation-tier {
+      border: 1px solid var(--magenta);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      background: rgba(26, 10, 31, 0.3);
+    }
+
+    .donation-tier:hover {
+      border-color: var(--blood);
+      box-shadow: 0 0 20px var(--blood);
+      transform: translateY(-5px);
+    }
+
+    .tier-header {
+      color: var(--teal);
+      border-bottom: 1px dashed var(--magenta);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .tier-amount {
+      font-size: 2rem;
+      color: var(--blood);
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+
+    .tier-impact {
+      font-size: 0.9rem;
+      color: var(--teal);
+      margin-bottom: 1rem;
+      min-height: 3rem;
+    }
+
+    .tier-benefits {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 2rem;
+    }
+
+    .tier-benefits li {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .tier-benefits li:before {
+      content: "⊹";
+      color: var(--magenta);
+      position: absolute;
+      left: 0;
+    }
+
+    /* Buttons */
+    .donate-btn {
+      background: transparent;
+      color: var(--blood);
+      border: 2px solid var(--blood);
+      padding: 1rem 2rem;
+      font-family: inherit;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .donate-btn:hover {
+      background: var(--blood);
+      color: var(--sand);
+      box-shadow: 0 0 20px var(--blood);
+    }
+
+    /* Custom Amount */
+    .custom-amount {
+      margin: 3rem 0;
+      text-align: center;
+      padding: 1.5rem;
+      border: 1px dashed var(--blood);
+    }
+
+    .custom-amount input {
+      background: transparent;
+      border: 1px solid var(--blood);
+      color: var(--teal);
+      padding: 1rem;
+      font-size: 1.5rem;
+      width: 200px;
+      text-align: center;
+      margin: 1rem auto;
+      display: block;
+    }
+
+    /* Footer */
+    .portal-footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--magenta);
+      margin-top: auto;
+      background: rgba(10, 26, 47, 0.9);
+    }
+
+    .portal-footer a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    .portal-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .signal-meter {
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--navy), var(--blood), var(--magenta));
+      margin-top: 1rem;
+      animation: pulse 3s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .donation-content {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      .tier-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="portal-container">
+    <!-- Animated Background -->
+    <div id="donation-canvas"></div>
+
+    <!-- Header -->
+    <header class="portal-header">
+      <h1>// DIRECT_<span style="color: var(--teal)">SUSTENANCE</span></h1>
+      <h2>NO MIDDLEMAN, NO ALGORITHM</h2>
+    </header>
+
+    <!-- Main Content -->
+    <main class="donation-content">
+      <div class="impact-statement">
+        <p>Your contributions flow directly into:</p>
+        <em>Mutual aid requests fulfilled · Shadow Spells printed · Files decrypted</em>
+      </div>
+
+      <!-- Donation Tiers -->
+      <div class="tier-container">
+        <!-- Tier 1 -->
+        <div class="donation-tier" data-amount="25">
+          <div class="tier-header">
+            <h3>NETWORK NODE</h3>
+            <div class="tier-amount">$25</div>
+            <div class="tier-impact">Feeds one person for a week</div>
+          </div>
+          <ul class="tier-benefits">
+            <li>Name in the Manual's honor roll</li>
+            <li>Digital survival toolkit</li>
+            <li>Early access to drops</li>
+          </ul>
+          <button class="donate-btn">WEAVE</button>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="donation-tier" data-amount="100">
+          <div class="tier-header">
+            <h3>BRIDGE BUILDER</h3>
+            <div class="tier-amount">$100</div>
+            <div class="tier-impact">Prints 20 free Shadow Spells zines</div>
+          </div>
+          <ul class="tier-benefits">
+            <li>All previous benefits</li>
+            <li>Exclusive strategy briefs</li>
+            <li>Monthly developer notes</li>
+            <li>Priority Network access</li>
+          </ul>
+          <button class="donate-btn">REPAIR</button>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="donation-tier" data-amount="500">
+          <div class="tier-header">
+            <h3>POWER SOURCE</h3>
+            <div class="tier-amount">$500</div>
+            <div class="tier-impact">Funds a full Files investigation</div>
+          </div>
+          <ul class="tier-benefits">
+            <li>All previous benefits</li>
+            <li>1:1 resistance strategy session</li>
+            <li>Physical care package</li>
+            <li>Beta test new systems</li>
+          </ul>
+          <button class="donate-btn">EMPOWER</button>
+        </div>
+      </div>
+
+      <!-- Custom Amount -->
+      <div class="custom-amount">
+        <h3 style="color: var(--teal)">CUSTOM FLOW</h3>
+        <p>Set your own sustenance level</p>
+        <input type="number" min="1" placeholder="$ AMOUNT">
+        <button class="donate-btn">TRANSMIT</button>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem; padding-top: 1rem;">
+        <small style="color: var(--teal)">
+          Every dollar bypasses platforms—flowing straight to the work.
+        </small>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="portal-footer">
+      <p>Need armor instead? <a href="https://the-reframe.square.site/">The ReFrame Store</a> outfits your resistance.</p>
+      <p>Current Network capacity: <span id="donation-total">$14,892</span> monthly</p>
+      <div class="signal-meter"></div>
+    </footer>
+  </div>
+
+  <script>
+    // =====================
+    // DONATION PAGE PARTICLES
+    // =====================
+    new p5((p) => {
+      let particles = [];
+      const particleCount = 80;
+
+      p.setup = () => {
+        const canvas = p.createCanvas(
+          document.getElementById('donation-canvas').offsetWidth,
+          document.getElementById('donation-canvas').offsetHeight
+        );
+        canvas.parent('donation-canvas');
+        
+        // Create urgent red/magenta particles
+        for (let i = 0; i < particleCount; i++) {
+          particles.push({
+            x: p.random(p.width),
+            y: p.random(p.height),
+            size: p.random(2, 6),
+            speed: p.random(0.3, 1.5),
+            angle: p.random(p.TWO_PI),
+            color: p.color(
+              p.random(200, 255),  // Red
+              p.random(0, 50),     // Minimal green
+              p.random(100, 200),  // Some blue
+              180                  // More opaque
+            )
+          });
+        }
+      };
+
+      p.draw = () => {
+        p.clear();
+        p.background(10, 26, 47, 15);
+        
+        // Draw pulsing particles
+        particles.forEach(part => {
+          part.x += p.cos(part.angle) * part.speed;
+          part.y += p.sin(part.angle * 0.7) * part.speed * 1.3;
+          
+          // Wrap edges
+          if (part.x > p.width) part.x = 0;
+          if (part.x < 0) part.x = p.width;
+          if (part.y > p.height) part.y = 0;
+          if (part.y < 0) part.y = p.height;
+          
+          // Pulsing effect
+          const pulseSize = part.size * (0.8 + 0.5 * p.sin(p.frameCount * 0.05));
+          
+          p.fill(part.color);
+          p.noStroke();
+          p.ellipse(part.x, part.y, pulseSize, pulseSize);
+        });
+
+        // Intensify on tier hover
+        const hoveredTier = document.querySelector('.donation-tier:hover');
+        if (hoveredTier) {
+          for (let i = 0; i < 5; i++) {
+            p.fill(
+              p.random(200, 255),
+              p.random(0, 30),
+              p.random(50, 100),
+              p.random(100, 200)
+            );
+            p.ellipse(
+              p.random(p.width),
+              p.random(p.height),
+              p.random(10, 30),
+              p.random(10, 30)
+            );
+          }
+        }
+      };
+    });
+
+    // =====================
+    // DONATION INTERACTIVITY
+    // =====================
+    document.addEventListener('DOMContentLoaded', () => {
+      // Tier selection feedback
+      const tiers = document.querySelectorAll('.donation-tier');
+      tiers.forEach(tier => {
+        tier.addEventListener('click', function() {
+          tiers.forEach(t => t.style.boxShadow = 'none');
+          this.style.boxShadow = '0 0 25px var(--blood)';
+        });
+      });
+
+      // Animate donation total
+      let currentTotal = 14892;
+      const totalElement = document.getElementById('donation-total');
+      
+      setInterval(() => {
+        currentTotal += Math.floor(Math.random() * 3);
+        totalElement.textContent = '$' + currentTotal.toLocaleString();
+      }, 3000);
+    });
+
+    // Console message
+    console.log(
+      `%cDIRECT SUSTENANCE%c\n\nYour contributions bypass:\n` +
+      `- Platform fees\n- Corporate payment processors\n` +
+      `- All middlemen\n\nFlow straight to the work.`,
+      'color: #ff0033; font-size: 2rem;',
+      'color: #00ffd0;'
+    );
+  </script>
+</body>
+</html>
