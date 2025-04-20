@@ -275,8 +275,7 @@
             <li>Digital survival toolkit</li>
             <li>Early access to drops</li>
           </ul>
-          <button class="donate-btn">WEAVE</button>
-        </div>
+<button class="donate-btn" onclick="window.open('https://square.link/u/roanw4Cj', '_blank')">WEAVE</button>        </div>
 
         <!-- Tier 2 -->
         <div class="donation-tier" data-amount="100">
@@ -291,7 +290,12 @@
             <li>Monthly developer notes</li>
             <li>Priority Network access</li>
           </ul>
-          <button class="donate-btn">REPAIR</button>
+        
+  <button class="donate-btn" 
+          onclick="window.open('https://square.link/u/jixoZDkR','_blank')"
+          >
+    REPAIR
+  </button>
         </div>
 
         <!-- Tier 3 -->
@@ -307,7 +311,7 @@
             <li>Physical care package</li>
             <li>Beta test new systems</li>
           </ul>
-          <button class="donate-btn">EMPOWER</button>
+          <button class="donate-btn" onclick="window.open('https://square.link/u/1K40dFvE','_blank')">EMPOWER</button>
         </div>
       </div>
 
@@ -316,7 +320,7 @@
         <h3 style="color: var(--teal)">CUSTOM FLOW</h3>
         <p>Set your own sustenance level</p>
         <input type="number" min="1" placeholder="$ AMOUNT">
-        <button class="donate-btn">TRANSMIT</button>
+        <button class="donate-btn" onclick="window.open('https://square.link/u/wcpmF4e7', '_blank')">TRANSMIT</button>
       </div>
 
       <div style="text-align: center; margin-top: 3rem; padding-top: 1rem;">
@@ -329,8 +333,8 @@
     <!-- Footer -->
     <footer class="portal-footer">
       <p>Need armor instead? <a href="https://the-reframe.square.site/">The ReFrame Store</a> outfits your resistance.</p>
-      <p>Current Network capacity: <span id="donation-total">$14,892</span> monthly</p>
-      <div class="signal-meter"></div>
+      <!-- Footer <p>Current Network capacity: <span id="donation-total">$14,892</span> monthly</p>
+      <div class="signal-meter"></div>-->
     </footer>
   </div>
 
@@ -424,17 +428,78 @@
         });
       });
 
-      // Animate donation total
-      let currentTotal = 14892;
-      const totalElement = document.getElementById('donation-total');
-      
-      setInterval(() => {
-        currentTotal += Math.floor(Math.random() * 3);
-        totalElement.textContent = '$' + currentTotal.toLocaleString();
-      }, 3000);
+      // =====================
+// DONATION INTERACTIVITY
+// =====================
+document.addEventListener('DOMContentLoaded', () => {
+  // Tier selection feedback
+  const tiers = document.querySelectorAll('.donation-tier');
+  tiers.forEach(tier => {
+    tier.addEventListener('click', function() {
+      tiers.forEach(t => t.style.boxShadow = 'none');
+      this.style.boxShadow = '0 0 25px var(--blood)';
     });
+  });
+
+  // Remove or replace this fake counter:
+  // let currentTotal = 14892;
+  // setInterval(() => {
+  //   currentTotal += Math.floor(Math.random() * 3);
+  //   document.getElementById('donation-total').textContent = '$' + currentTotal.toLocaleString();
+  // }, 3000);
+});
+
+// =====================
+// MILESTONE TRACKER (CORRECT PLACEMENT)
+// =====================
+const phases = [
+  { 
+    name: "Ignition", 
+    unlocks: ["Network node activation", "Manual digital release"],
+    threshold: 0
+  },
+  { 
+    name: "Foundation", 
+    unlocks: ["First Manual print run", "Shadow Spells beta"],
+    threshold: 500
+  },
+  { 
+    name: "Expansion", 
+    unlocks: ["Mutual Aid toolkit", "Files investigation"],
+    threshold: 2000
+  }
+];
+
+function updateMomentum(currentFunds) {
+  let activePhase = phases[0];
+  let nextPhase = phases[1];
+  
+  // Find current phase
+  for (let i = 0; i < phases.length; i++) {
+    if (currentFunds >= phases[i].threshold) {
+      activePhase = phases[i];
+      nextPhase = phases[i+1] || null;
+    }
+  }
+
+  // Update display
+  document.getElementById('current-phase').textContent = activePhase.name;
+  document.getElementById('next-unlock').textContent = 
+    nextPhase ? nextPhase.unlocks[0] : "Sustained operations";
+  
+  // Update signal bar
+  const progress = nextPhase 
+    ? Math.min(100, (currentFunds - activePhase.threshold) / 
+                   (nextPhase.threshold - activePhase.threshold) * 100)
+    : 100;
+  document.querySelector('.signal-bar').style.setProperty('--strength', `${progress}%`);
+}
+
+// Initialize with actual funds (replace 342 with your real starting amount)
+updateMomentum(342);
 
     // Console message
+ 
     console.log(
       `%cDIRECT SUSTENANCE%c\n\nYour contributions bypass:\n` +
       `- Platform fees\n- Corporate payment processors\n` +
