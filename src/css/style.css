@@ -1,4 +1,9 @@
-/* Core Variables */
+  /* 
+     * BRIDGE Link Page - Afrofuturism with Digital Glitch Art
+     * CSS Implementation with detailed elements
+     */
+
+      /* Core Variables */
       :root {
         /* Color Palette - Enhanced for Afrofuturism */
         --midnight-navy: #1a1a2e;
@@ -196,9 +201,14 @@
         position: relative;
         min-height: 100vh;
         display: flex;
-        flex-direction: column;
+        flex-direction: column;        
+}
       }
 
+      
+
+      
+      
       /* Particle Background */
       #portal-canvas {
         position: fixed;
@@ -518,6 +528,16 @@
       .portal-footer {
         animation-delay: 0.9s;
       }
+      
+      /* Glowing text effect */
+.neon-text {
+  color: #fff;
+  text-shadow: 
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #0ff,
+    0 0 30px #0ff;
+}
 
       /* Mobile Responsiveness */
       @media (max-width: 768px) {
@@ -535,3 +555,298 @@
           font-size: 1rem;
         }
       }
+
+/* =================================== */
+/* DONATION PAGE - PORTAL STYLE UNIFIED */
+/* =================================== */
+
+/* Uses all existing portal variables - no new ones needed */
+
+/* Canvas Container */
+#donation-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+/* Header - Matches portal-header exactly */
+.donation-header {
+  padding: var(--space-xl) var(--space-md);
+  position: relative;
+  z-index: 100;
+  text-align: center;
+  border-bottom: none;
+  margin-bottom: var(--space-md);
+}
+
+.donation-header h1 {
+  margin: 0;
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  text-shadow: 0 0 10px var(--electric-teal);
+  letter-spacing: 0.2em;
+  color: var(--pale-sand);
+  text-transform: uppercase;
+}
+
+.donation-header h2 {
+  color: var(--hot-magenta);
+  margin-top: 0.5rem;
+  font-family: "Space Mono", monospace;
+  font-size: 1.3rem;
+}
+
+/* Main Content - Matches portal-content */
+.donation-content {
+  max-width: var(--container-width);
+  margin: var(--space-md) auto;
+  padding: var(--space-lg);
+  background: rgba(15, 15, 26, 0.7);
+  border: 1px solid var(--teal-15);
+  box-shadow: 0 0 30px rgba(0, 245, 212, 0.1);
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+  border-radius: 2px;
+}
+
+/* Impact Statement - Uses portal-section style */
+.impact-statement {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px dashed var(--electric-teal);
+}
+
+.impact-statement em {
+  color: var(--cosmic-gold);
+  font-style: normal;
+  display: block;
+  margin-top: var(--space-md);
+}
+
+/* Tier Container - Uses portal grid logic */
+.tier-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+/* Tier Cards - Matches portal card style */
+.donation-tier {
+  padding: var(--space-lg);
+  background: rgba(26, 26, 46, 0.5);
+  border: 1px solid var(--teal-15);
+  transition: all var(--timing-medium) ease;
+  cursor: pointer;
+  backdrop-filter: blur(3px);
+  border-radius: 2px;
+}
+
+.donation-tier:hover {
+  border-color: var(--hot-magenta);
+  box-shadow: 0 0 20px var(--magenta-20);
+  transform: translateY(-3px);
+}
+
+.tier-header {
+  color: var(--electric-teal);
+  border-bottom: 1px dashed var(--hot-magenta);
+  padding-bottom: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.tier-amount {
+  font-size: 2rem;
+  color: var(--cosmic-gold);
+  margin: var(--space-md) 0;
+  font-weight: bold;
+}
+
+.tier-benefits {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: var(--space-lg);
+}
+
+.tier-benefits li {
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--hot-magenta);
+}
+
+.tier-benefits li:before {
+  content: "»";
+  color: var(--electric-teal);
+  position: absolute;
+  left: 0;
+}
+
+/* Buttons - Exact portal-btn style */
+.donate-btn {
+  background: transparent;
+  color: var(--electric-teal);
+  border: 2px solid var(--electric-teal);
+  padding: 1rem 2rem;
+  font-family: "Space Mono", monospace;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all var(--timing-medium) ease;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: var(--space-lg);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  border-radius: 2px;
+}
+
+.donate-btn:hover {
+  background: var(--electric-teal);
+  color: var(--midnight-navy);
+  box-shadow: 0 0 20px var(--electric-teal);
+  transform: translateY(-2px);
+}
+
+.donate-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    var(--teal-20) 0%,
+    rgba(0, 245, 212, 0.05) 40%,
+    var(--magenta-20) 60%,
+    rgba(255, 79, 135, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--timing-medium) ease;
+  z-index: -1;
+}
+
+.donate-btn:hover::before {
+  opacity: 1;
+}
+
+/* Custom Amount - Matches portal input style */
+.custom-amount {
+  margin: var(--space-xl) 0;
+  text-align: center;
+  padding: var(--space-lg);
+  border: 1px dashed var(--electric-teal);
+  background: rgba(0, 245, 212, 0.05);
+}
+
+.custom-amount input {
+  background: transparent;
+  border: 1px solid var(--hot-magenta);
+  color: var(--cosmic-gold);
+  padding: 1rem;
+  font-size: 1.5rem;
+  width: 200px;
+  text-align: center;
+  margin: var(--space-md) auto;
+  display: block;
+  font-family: "Space Mono", monospace;
+}
+
+/* Footer - Exact portal-footer style */
+.donation-footer {
+  text-align: center;
+  padding: var(--space-lg);
+  margin-top: auto;
+  background: rgba(15, 15, 26, 0.7);
+  border-top: 1px solid var(--hot-magenta);
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+}
+
+.donation-footer p {
+  margin-bottom: 1rem;
+}
+
+.donation-footer a {
+  color: var(--hot-magenta);
+  text-decoration: none;
+}
+
+.donation-footer a:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 8px var(--hot-magenta);
+}
+
+/* Cosmic Grid Overlay - Same as portal */
+.donation-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(
+      0deg,
+      transparent 24%,
+      var(--teal-15) 25%,
+      var(--teal-15) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--teal-15) 75%,
+      var(--teal-15) 76%,
+      transparent 77%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      var(--teal-15) 25%,
+      var(--teal-15) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--teal-15) 75%,
+      var(--teal-15) 76%,
+      transparent 77%
+    );
+  background-size: 50px 50px;
+  z-index: -1;
+  opacity: 0.5;
+  animation: gridPulse 15s infinite alternate;
+}
+
+@keyframes gridPulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.4; }
+}
+
+/* Update the particle canvas positioning */
+#donation-canvas {
+  z-index: -2; /* Behind grid */
+  opacity: 0.6; /* More subtle */
+
+/* Mobile - Same breakpoints as portal */
+@media (max-width: 768px) {
+  .donation-content {
+    margin: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  .tier-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .donate-btn {
+    padding: 0.8rem 1.5rem;
+  }
+}
