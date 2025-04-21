@@ -1,48 +1,78 @@
-# Hello website!
+# 🌉 B.R.I.D.G.E. Link Page
 
-This is a basic HTML starter project you can build on however you like. No need to save. While you develop your site, your changes will happen ✨ immediately in the preview window. On the left you'll see the files that make up your site, including HTML, JavaScript, and CSS. You can upload assets like images or audio in `assets`. The rest is up to you and your imagination. 🦄
+**Live Site:** [asiakay.github.io/bridge-link-page](https://asiakay.github.io/bridge-link-page/)  
+**Creator:** [Asia Kay](https://github.com/asiakay)  
+**Project Status:** Actively evolving
 
-_Last updated: 28 Feb 2023_
+---
 
-## What's in this project?
+## ✨ What is this?
 
-← `README.md`: That's this file, where you can tell people what your cool website does and how you built it.
+The B.R.I.D.G.E. Link Page is a digital hub that connects all facets of the **B.R.I.D.G.E. ecosystem**—a grassroots network focused on economic survival, misinformation resistance, and collective liberation.
 
-← `index.html`: This is the main web page for your site. The HTML defines the structure and content of the page using _elements_. You'll see references in the HTML to the JS and CSS files. Try clicking the image in the center of the page!
+> "The product is liberation. The service is empowerment. The message is undeniable."
 
-← `style.css`: CSS files add styling rules to your content. The CSS applies styles to the elements in your HTML page. The style rules also make the image move when you click it.
+This portal brings together:
+- The **Economic Survival Manual**  
+- The **B.R.I.D.G.E. Files** Substack  
+- The **Reframe Store**  
+- Social and organizing tools  
+- Future links for events, downloads, and project offshoots
 
-← `script.js`: If you're feeling fancy you can add interactivity to your site with JavaScript. The code in the JavaScript file runs when the page loads, and when the visitor clicks the button you can add using the code in the TODO.
+It serves as both a **navigation point** and a **signal transmission**—a space to organize, educate, and activate.
 
-Open each file and check out the comments (in gray) for more info.
+---
 
-## Try this next 🏗️
+## 🛠️ How I Built It
 
-Take a look in `TODO.md` for next steps you can try out in your new site!
+- **Tech Stack:**  
+  - HTML + CSS + JavaScript 
+  - Hosted via [GitHub Pages](https://pages.github.com)  
+  - Glitch used for design previews + visual experimentation  
+  - Custom fonts and visual assets designed to reflect the Afrofuturist + poetic identity of the movement
 
-___Want a minimal version of this project to build your own website? Check out [Blank Website](https://glitch.com/edit/#!/remix/glitch-blank-website)!___
+- **Design Goals:**  
+  - Clean, fast-loading, and responsive  
+  - Creative coding style that balances minimalism with cosmic symbolism  
+  - Color palette based on the “Modern Resistance” guide (Midnight Navy, Electric Teal, Pale Sand, Magenta)
 
-## Ready to share your site?
+- **Fonts & Assets:**  
+  - Primary typefaces: `Bebas Neue`, `Inter`, and `JetBrains Mono`  
+  - Logo created with assistance from generative design tools + post-processing  
+  - SVG glyphs and celestial symbols are gradually being added for storytelling
 
-Add these meta tags for SEO and social sharing between your page `<head></head>` tags, changing the values for your site:
+---
 
-```
-<link rel="canonical" href="https://glitch-hello-website.glitch.me/" />
-<meta name="description" content="A simple website, built with Glitch. Remix it to get your own."/>
-<meta name="robots" content="index,follow" />
-<meta property="og:title" content="Hello World!" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://glitch-hello-website.glitch.me/" />
-<meta property="og:description" content="A simple website, built with Glitch. Remix it to get your own."/>
-<meta property="og:image" content="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhello-website-social.png?v=1616712748147"/>
-<meta name="twitter:card" content="summary" />
-```
+## 🚀 Future Plans
 
-![Glitch](https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FLogo_Color.svg?v=1602781328576)
+- Add animation and glitch effects for subtle signal transmission vibe  
+- Integrate real-time updates via Substack feed or webhook  
+- Expand into multi-language support and alt-text storytelling  
+- Connect to the upcoming **Liberatory Futures Lab** and media projects
 
-## You built this with Glitch!
+---
 
-[Glitch](https://glitch.com) is a friendly community where millions of people come together to build web apps and websites.
+## 🤝 Contribute or Fork
 
-- Need more help? [Check out our Help Center](https://help.glitch.com/) for answers to any common questions.
-- Ready to make it official? [Become a paid Glitch member](https://glitch.com/pricing) to boost your app with private sharing, more storage and memory, domains and more.
+Want to remix, contribute, or build your own movement portal?
+
+1. Fork this repo
+2. Update the `index.html` and `style.css` with your own links and theme
+3. Deploy to GitHub Pages in your repo settings
+
+If you build something inspired by this, tag me—I’d love to see it!
+
+---
+
+## 📡 About B.R.I.D.G.E.
+
+**B.R.I.D.G.E.** stands for:  
+**Build. Repair. Invest. Dream. Grow. Empower.**  
+
+We are a digital-first, grassroots network helping communities—especially Black, working-class, students, and historically excluded folks—survive now and build for what’s next.
+
+This page is just one signal in a constellation.  
+Stay tuned. Stay free. Build the bridge.
+
+---
+
