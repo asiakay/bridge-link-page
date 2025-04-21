@@ -1,0 +1,683 @@
+/* 
+ * BRIDGE Link Page - Afrofuturism with Digital Glitch Art
+ * CSS Implementation with detailed elements
+ */
+
+/* Core Variables */
+:root {
+  /* Color Palette - Enhanced for Afrofuturism */
+  --midnight-navy: #1A1A2E;
+  --deep-space: #0F0F1A; /* Darker variation for depth */
+  --electric-teal: #00F5D4;
+  --cosmic-teal: #4EFCDB; /* Brighter variation for highlights */
+  --pale-sand: #FDF6EC;
+  --hot-magenta: #FF4F87;
+  --cosmic-gold: #FFD700; /* Gold accent for ancestral elements */
+  --meteor-smoke: #606060;
+  
+  /* Transparency Variations */
+  --teal-15: rgba(0, 245, 212, 0.15);
+  --teal-20: rgba(0, 245, 212, 0.2);
+  --magenta-20: rgba(255, 79, 135, 0.2);
+  --gold-15: rgba(255, 215, 0, 0.15);
+  --sand-15: rgba(253, 246, 236, 0.15);
+  
+  /* Spacing Units */
+  --space-unit: 8px;
+  --space-xs: calc(var(--space-unit) * 1);
+  --space-sm: calc(var(--space-unit) * 2);
+  --space-md: calc(var(--space-unit) * 3);
+  --space-lg: calc(var(--space-unit) * 4);
+  --space-xl: calc(var(--space-unit) * 6);
+  
+  /* Animation Timings */
+  --timing-quick: 150ms;
+  --timing-medium: 300ms;
+  --timing-slow: 500ms;
+  
+  /* Container Sizes */
+  --container-width: 700px;
+}
+
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;600&family=Space+Mono&display=swap');
+
+/* Base Styles */
+body {
+  background-color: var(--midnight-navy);
+  color: var(--pale-sand);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Cosmic Background with Deep Space and Stars */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(125deg, var(--deep-space) 0%, var(--midnight-navy) 70%, var(--deep-space) 100%);
+  z-index: -2;
+}
+
+/* Star Field with Various Sizes */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 25px 5px, var(--pale-sand) 50%, transparent 100%),
+    radial-gradient(1px 1px at 50px 25px, var(--pale-sand) 50%, transparent 100%),
+    radial-gradient(1px 1px at 125px 20px, var(--cosmic-gold) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 50px 75px, var(--pale-sand) 50%, transparent 100%),
+    radial-gradient(2px 2px at 175px 135px, var(--cosmic-gold) 50%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 275px 75px, var(--pale-sand) 50%, transparent 100%),
+    radial-gradient(2px 2px at 250px 175px, var(--pale-sand) 50%, transparent 100%);
+  background-size: 350px 200px;
+  opacity: 0.4;
+  z-index: -1;
+  animation: cosmictwinkle 10s ease-in-out infinite alternate;
+}
+
+/* Subtle cosmic background movement */
+@keyframes cosmictwinkle {
+  0% { 
+    opacity: 0.3; 
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+  100% { 
+    opacity: 0.35; 
+    transform: scale(1);
+  }
+}
+
+/* Cosmic Mesh Grid Overlay - Sacred Geometry */
+.cosmic-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(0deg, transparent 24%, 
+      rgba(0, 245, 212, .03) 25%, 
+      rgba(0, 245, 212, .03) 26%, 
+      transparent 27%, 
+      transparent 74%, 
+      rgba(0, 245, 212, .03) 75%, 
+      rgba(0, 245, 212, .03) 76%, 
+      transparent 77%),
+    linear-gradient(90deg, transparent 24%, 
+      rgba(0, 245, 212, .03) 25%, 
+      rgba(0, 245, 212, .03) 26%, 
+      transparent 27%, 
+      transparent 74%, 
+      rgba(0, 245, 212, .03) 75%, 
+      rgba(0, 245, 212, .03) 76%, 
+      transparent 77%);
+  background-size: 50px 50px;
+  z-index: -1;
+}
+
+/* Main Container */
+.bridge-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+  position: relative;
+}
+
+/* Glitch Animation Utilities */
+.glitch-container {
+  position: relative;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.glitch-effect {
+  position: relative;
+  display: inline-block;
+}
+
+/* RGB Split Effect on Hover */
+.glitch-effect:hover::before,
+.glitch-effect:hover::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--midnight-navy);
+  opacity: 0.8;
+}
+
+.glitch-effect:hover::before {
+  color: var(--hot-magenta);
+  z-index: -1;
+  transform: translateX(-3px);
+  animation: glitch-anim-1 0.3s infinite linear alternate;
+}
+
+.glitch-effect:hover::after {
+  color: var(--electric-teal);
+  z-index: -2;
+  transform: translateX(3px);
+  animation: glitch-anim-2 0.3s infinite linear alternate;
+}
+
+@keyframes glitch-anim-1 {
+  0% { transform: translateX(-2px); }
+  100% { transform: translateX(2px); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { transform: translateX(2px); }
+  100% { transform: translateX(-2px); }
+}
+
+/* Header with Ancestral-Futuristic Symbol */
+.bridge-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  position: relative;
+  padding-top: var(--space-lg);
+}
+
+/* Animated Symbol Container */
+.bridge-symbol {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto var(--space-md);
+}
+
+/* Sacred Geometry Circle */
+.bridge-symbol::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid var(--cosmic-gold);
+  border-radius: 50%;
+  animation: rotate 20s linear infinite;
+}
+
+/* Inner Geometry */
+.bridge-symbol::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  right: 15%;
+  bottom: 15%;
+  border: 1px solid var(--electric-teal);
+  transform: rotate(45deg);
+  animation: pulse-symbol 4s ease-in-out infinite alternate;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-symbol {
+  0% { transform: rotate(45deg) scale(0.9); opacity: 0.7; }
+  50% { transform: rotate(45deg) scale(1.1); opacity: 1; }
+  100% { transform: rotate(45deg) scale(0.9); opacity: 0.7; }
+}
+
+/* Cosmic Bridge - Central Symbol */
+.cosmic-bridge {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  right: 30%;
+  bottom: 30%;
+}
+
+.cosmic-bridge::before,
+.cosmic-bridge::after {
+  content: '';
+  position: absolute;
+  background: var(--cosmic-teal);
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.cosmic-bridge::before {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.cosmic-bridge::after {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* Signal Pulse Animation */
+.bridge-pulse-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  z-index: -1;
+}
+
+.bridge-pulse-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--teal-15) 0%,
+    rgba(0, 245, 212, 0.05) 40%,
+    transparent 70%
+  );
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.bridge-pulse-effect::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  right: 25%;
+  bottom: 25%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--gold-15) 0%,
+    rgba(255, 215, 0, 0.05) 40%,
+    transparent 70%
+  );
+  animation: pulse 4s ease-in-out infinite 2s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+/* Page Title with Afrofuturistic Typography */
+.bridge-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 var(--space-xs);
+  letter-spacing: 0.2em;
+  color: var(--pale-sand);
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+}
+
+.bridge-title .glitch-effect {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tagline with Space Font */
+.bridge-tagline {
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  color: var(--electric-teal);
+  margin: 0;
+  opacity: 0.9;
+  position: relative;
+}
+
+/* Signal Line Decoration */
+.signal-line {
+  height: 30px;
+  margin: var(--space-md) auto;
+  width: 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.signal-line::before {
+  content: '';
+  position: absolute;
+  height: 1px;
+  background: var(--electric-teal);
+  width: 100%;
+  top: 50%;
+  animation: signal-wave 3s ease-in-out infinite;
+}
+
+@keyframes signal-wave {
+  0% {
+    transform: translateX(-30%) scaleY(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(0) scaleY(3);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(30%) scaleY(1);
+    opacity: 0.5;
+  }
+}
+
+/* Links Section */
+.bridge-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  position: relative;
+}
+
+/* Link Item with Cyber-Afrofuturistic Styling */
+.bridge-link {
+  display: flex;
+  align-items: center;
+  padding: var(--space-md);
+  background-color: rgba(15, 15, 26, 0.7);
+  border: 1px solid var(--teal-15);
+  color: var(--pale-sand);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--timing-medium) ease, 
+              box-shadow var(--timing-medium) ease,
+              border-color var(--timing-medium) ease;
+  border-radius: 2px;
+  min-height: 54px;
+  backdrop-filter: blur(5px);
+}
+
+/* Glyph Pattern Overlay for Link */
+.bridge-link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 245, 212, 0.03) 10px,
+    rgba(0, 245, 212, 0.03) 20px
+  );
+  z-index: 0;
+  opacity: 0.2;
+}
+
+.bridge-link:hover {
+  transform: scale(1.02) translateY(-2px);
+  border-color: var(--electric-teal);
+  box-shadow: 0 0 15px var(--teal-20),
+              0 0 30px var(--teal-15);
+}
+
+/* Gradient Hover Effect */
+.bridge-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    var(--teal-20) 0%, 
+    rgba(0, 245, 212, 0.05) 40%,
+    var(--magenta-20) 60%,
+    rgba(255, 79, 135, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--timing-medium) ease;
+  z-index: 0;
+}
+
+.bridge-link:hover::before {
+  opacity: 1;
+}
+
+/* Link Content Positioning */
+.bridge-link__icon {
+  margin-right: var(--space-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--electric-teal);
+  position: relative;
+  z-index: 1;
+}
+
+.bridge-link__text {
+  position: relative;
+  z-index: 1;
+  transition: text-shadow var(--timing-medium) ease;
+  font-family: 'Space Mono', monospace;
+}
+
+.bridge-link:hover .bridge-link__text {
+  text-shadow: 0 0 8px var(--electric-teal);
+}
+
+/* Ancestral Symbol Icons for Links */
+.ancestral-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  margin-right: var(--space-sm);
+}
+
+/* Circular Symbol */
+.ancestral-icon.circle::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--cosmic-teal);
+  border-radius: 50%;
+}
+
+/* Star Symbol */
+.ancestral-icon.star::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 15px solid var(--cosmic-teal);
+  transform: rotate(0deg);
+}
+
+.ancestral-icon.star::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 15px solid var(--cosmic-teal);
+  transform: rotate(72deg);
+}
+
+/* Signal Wave Footer */
+.bridge-footer {
+  text-align: center;
+  margin-top: var(--space-xl);
+  position: relative;
+  padding-bottom: var(--space-lg);
+}
+
+/* Wave Pattern Divider */
+.bridge-divider {
+  height: 30px;
+  margin-bottom: var(--space-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.bridge-divider::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--teal-15) 20%, 
+    var(--teal-15) 80%, 
+    transparent 100%
+  );
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25'%3E%3C/path%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5'%3E%3C/path%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z'%3E%3C/path%3E%3C/svg%3E");
+  mask-size: cover;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25'%3E%3C/path%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5'%3E%3C/path%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z'%3E%3C/path%3E%3C/svg%3E");
+  -webkit-mask-size: cover;
+  animation: wave-motion 10s linear infinite alternate;
+}
+
+@keyframes wave-motion {
+  0% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(10%);
+  }
+}
+
+.bridge-footer__text {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  color: var(--cosmic-teal);
+  margin: 0;
+  position: relative;
+}
+
+/* Code Fragment Background */
+.code-fragment {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--teal-15);
+  opacity: 0.3;
+  line-height: 1.2;
+  text-align: right;
+  pointer-events: none;
+  user-select: none;
+  z-index: -1;
+}
+
+/* Page Load Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bridge-header, .bridge-link, .bridge-footer {
+  opacity: 0;
+  animation: fadeInUp var(--timing-medium) ease forwards;
+}
+
+.bridge-header {
+  animation-delay: 0.1s;
+}
+
+.bridge-link:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.bridge-link:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.bridge-link:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+.bridge-link:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+.bridge-link:nth-child(5) {
+  animation-delay: 1.1s;
+}
+
+.bridge-footer {
+  animation-delay: 1.3s;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .bridge-container {
+    width: 90%;
+    padding: var(--space-md) var(--space-sm);
+  }
+  
+  .bridge-title {
+    font-size: 28px;
+  }
+  
+  .bridge-symbol {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bridge-container {
+    width: 95%;
+    padding: var(--space-md) var(--space-xs);
+  }
+  
+  .bridge-title {
+    font-size: 24px;
+  }
+  
+  .bridge-tagline {
+    font-size: 14px;
+  }
+  
+  .bridge-symbol {
+    width: 60px;
+    height: 60px;
+  }
+}
