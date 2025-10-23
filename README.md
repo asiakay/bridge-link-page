@@ -13,6 +13,7 @@ The B.R.I.D.G.E. Link Page is a digital hub that connects all facets of the **B.
 > "The product is liberation. The service is empowerment. The message is undeniable."
 
 This portal brings together:
+- [Episode 1 From Bartering to Blockchain](https://soundcloud.com/bartering-to-blockchain/from-bartering-to-currencies-the-origins-of-economic-systems?si=c0bfde0520a5443dbb4d5c8e0f3fd2a7&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)
 - The **Economic Survival Manual**  
 - The **B.R.I.D.G.E. Files** Substack  
 - The **Reframe Store**  
